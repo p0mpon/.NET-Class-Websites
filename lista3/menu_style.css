@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding-top: 60px;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fbd1e6;
+  z-index: 1000;
+  text-align: center;
+  font-family: "Bitcount Grid Single", system-ui;
+}
+
+nav > ul > li {
+  list-style: none;
+  display: inline-block;
+  padding: 15px 25px;
+  color: #451b04;
+  background-color: #fbd1e6;
+  cursor: pointer;
+  font-weight: bold;
+  user-select: none;
+  transition: background 0.3s;
+}
+
+nav > ul > li:hover {
+  background-color: #ffb2be;
+}
+
+nav > ul > li > ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fbd1e6;
+  padding: 10px 0;
+  min-width: 600px;
+  justify-content: center;
+  flex-direction: row;
+}
+
+nav > ul > li:hover > ul {
+  display: flex;
+}
+
+nav > ul > li > ul > li {
+  list-style: none;
+  position: relative;
+  margin: 0 10px;
+}
+
+nav > ul > li > ul > li > a {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #451b04;
+  background-color: #fbd1e6;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+nav > ul > li > ul > li > a:hover {
+  background-color: #ffb2be;
+}
+
+nav > ul > li > ul > li > ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fbd1e6;
+  min-width: 180px;
+  flex-direction: column;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+  list-style: none;
+}
+
+nav > ul > li > ul > li:hover > ul {
+  display: flex;
+}
+
+nav > ul > li > ul > li > ul > li > a {
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: #451b04;
+  font-size: 0.9em;
+}
+
+nav > ul > li > ul > li > ul > li > a:hover {
+  background-color: #ffb2be;
+}

@@ -1,0 +1,57 @@
+body {
+    background-image: url("https://pusheen.com/wp-content/uploads/2020/06/Pusheen_Zoom_Background_clouds_2020.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 80%;
+}
+
+* {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.normalTable {
+    th, td {
+        padding: 10px;
+        border: 2px dotted #6a492a;
+    }
+
+    tr:hover {
+        background-color: #c2b8ae;
+    }
+
+    border-width: 3px;
+    border-style: solid;
+    border-color: #6a492a;
+    margin: 30px;
+    background-color: #fce4e0;
+}
+
+#TableTwo {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 30px;
+    margin-top: 30px;
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+}
+
+.zebraTable {
+    width: 100%;
+    background-color: #fce4e0;
+
+    th, td {
+        text-align: right;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {background-color: #f8f9f3;}
+}

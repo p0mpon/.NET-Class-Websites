@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="multiplication_table.css">
+    <title>Multiplication table</title>
+</head>
+<body>
+    <main>
+        <div>
+            <h2>
+                Tabliczka mnożenia
+            </h2>
+            <p>
+                <label for="nInput">
+                    Podaj liczbę od 5 do 20, aby stworzyć tabliczkę mnożenia:
+                </label><br>
+                <input id="nInput" type="number" min="5" max="20"/>
+                <button id="generateButton">Generuj tablicę</button>
+            </p>
+        </div>
+        <div id="tableDiv"></div>
+        <div>
+            <p id="errorMessage"></p>
+        </div>
+    </main>
+
+    <script src="multiplication_table.js"></script>
+</body>
+</html>

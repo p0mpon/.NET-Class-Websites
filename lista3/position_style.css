@@ -1,0 +1,63 @@
+  body {
+    background-image: url("https://pusheen.com/wp-content/uploads/2020/06/Pusheen_Zoom_Background_Beach_2020.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 67% 67%;
+    background-repeat: repeat-y;
+  }
+  
+  #box-static {
+    position: static;
+    background-color: #fce6d9;
+    width: 400px;
+    height: 200px;
+
+    margin: 20px;
+    padding: 10px;
+    border: 4px solid #6a492a;
+  }
+
+  #box-relative {
+    position: relative;
+    background-color: #878787;
+    width: 400px;
+    height: 200px;
+
+    margin: 20px;
+    padding: 10px;
+    border: 4px solid #c2b8ae;
+
+    top: 100px;
+    left: 300px;
+  }
+
+  .container {
+    position: relative;
+    width: 400px;
+    height: 200px;
+    background-color: #c2b8ae;
+    border: 2px dashed #999;
+    margin: 40px;
+    left: 60px;
+  }
+
+  .box-absolute {
+    position: absolute;
+    background-color: pink;
+    width: 300px;
+    height: 200px;
+    top: 50px;
+    right: 30px;
+    border: 3px solid deeppink;
+  }
+
+  #box-fixed {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: #fce6d9;
+    width: 300px;
+    height: 200px;
+    border: 3px solid #6a492a;
+    padding: 10px;
+  }

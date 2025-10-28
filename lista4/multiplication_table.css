@@ -1,0 +1,57 @@
+table {
+    border: 2px solid black;
+    margin: 20px;
+    padding: 8px;
+    border-collapse: collapse;
+}
+
+table > tr > th {
+    padding: 8px;
+    border: 1px solid black;
+    min-width: 60px;
+    background-color: #C3C6FB;
+}
+
+table > tr > td {
+    padding: 8px;
+    border: 1px solid black;
+    min-width: 60px;
+}
+
+table > tr > td.even {
+    background-color: #FFDADC;
+}
+
+table > tr > td.odd {
+    background-color: #D9EDF5;
+}
+
+h2 {
+    color: #F394AF;
+    margin: 20px;
+}
+
+p {
+    margin: 10px;
+}
+
+input {
+    margin: 10px;
+    height: 30px;
+    width: 80px;
+    border: 2px solid #F394AF;
+}
+
+button {
+    margin: 10px;
+    height: 38px;
+    width: 120px;
+    border-radius: 3px;
+    border: 2px solid #F394AF;
+    background-color: #FFDADC;
+}
+
+body {
+    background-image: url("https://i.pinimg.com/736x/ce/11/10/ce11101d9c3aa07d804763c12487cccf.jpg");
+    background-repeat: repeat;
+}

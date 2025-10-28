@@ -1,0 +1,80 @@
+div.innerBGRight {
+    background-image: url("https://pusheen.com/wp-content/uploads/2020/06/Pusheen_Zoom_Backgrounds_room_2020.jpg");
+    background-size: 300px 100px;
+    background-repeat: repeat-y;
+    background-position-x: right;
+    padding: 2px 10px 30px 100px;
+    margin: 30px 40px 5px 90px;
+
+    p {
+        border: 20px solid #6a492a;
+        padding: 30px;
+    }
+}
+
+div.innerBGCover {
+    background-image: url("https://pusheen.com/wp-content/uploads/2020/06/Pusheen_Zoom_Backgrounds_room_2020.jpg");
+    background-position-x: right;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 5% 5%;
+    padding: 20px 20px;
+    border-width: 20px;
+    height: 800px;
+    width: 800px;
+
+    p {
+        width: 40%;
+        height: 40%;
+    }
+}
+
+div.innerBGHalf {
+    background-image: url("https://pusheen.com/wp-content/uploads/2020/06/Pusheen_Zoom_Backgrounds_room_2020.jpg");
+    background-repeat: repeat-x;
+    background-size: auto 50vh;
+    font-size: larger;
+
+    p {
+        padding: 2%;
+    }
+}
+
+p > :link {
+    color: #6a492a;
+    background-color: #f8f9f3;
+}
+
+p > :visited {
+    color: #f8f9f3;
+    background-color: #6a492a;
+}
+
+div > p {
+    background-color: #f8f9f3;
+    width: 600px;
+    height: 600px;
+    margin: 40px;
+}
+
+img {
+    float: right;
+    margin-left: 15px;
+    width: 200px;
+    height: 200px; 
+    margin: 10px;
+}
+
+.floatleft {
+    float: left;
+}
+
+p::first-letter {
+  color: #c2b8ae;
+  font-size: xx-large;
+}
+
+::selection {
+  color: pink;
+  background: hotpink;
+}
