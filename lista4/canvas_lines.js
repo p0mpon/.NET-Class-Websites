@@ -15,16 +15,16 @@ document.addEventListener("DOMContentLoaded", () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.beginPath();
 
-            ctx.moveTo(0, 0);
+            ctx.moveTo(0, y);
             ctx.lineTo(x, y);
 
-            ctx.moveTo(canvas.width, 0);
+            ctx.moveTo(x, 0);
             ctx.lineTo(x, y);
 
-            ctx.moveTo(0, canvas.height);
+            ctx.moveTo(x, canvas.height);
             ctx.lineTo(x, y);
 
-            ctx.moveTo(canvas.width, canvas.height);
+            ctx.moveTo(canvas.width, y);
             ctx.lineTo(x, y);
 
             ctx.lineWidth = 4;
