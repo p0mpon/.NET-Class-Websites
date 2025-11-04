@@ -3,3 +3,7 @@ bin/
 obj/
 *.csproj
 *.sln
+appsettings.*
+Program.cs
+launchSettings.*
+lib/
