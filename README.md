@@ -6,3 +6,9 @@ Pure html. It is a simple site to show html elements. It has some cool facts abo
 Html + CSS. Shows many things that CSS can do. It is somewhat Pusheen themed.
 #### List 4
 Html + CSS + JavaScript. It has two sites: site for generating a multiplication table and a site for a canvas element that draws lines to the cursor.
+#### List 5
+MVC in .NET. Sites from previous list but in ASP.NET.
+#### List 6
+C#. Very basic programs and showcases.
+#### List 7
+C#, LINQ. Queries and reflections.
