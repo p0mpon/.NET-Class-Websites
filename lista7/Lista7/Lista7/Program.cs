@@ -169,7 +169,7 @@ namespace Lista7
             int groupNumber = 1;
             foreach (var group in groups)
             {
-                Console.WriteLine($"--- Grupy {groupNumber++} ---");
+                Console.WriteLine($"--- Grupa {groupNumber++} ---");
                 foreach (var s in group)
                     Console.WriteLine(s);
                 Console.WriteLine();
@@ -215,12 +215,12 @@ namespace Lista7
             var sortedTopics = SortStudentsTopics(students);
             var sortedTopicsByGender = SortStudentsTopicsByGender(students);
             
-            Console.WriteLine("Podpunkt A");
+            Console.WriteLine("   Podpunkt A");
             foreach (var t in sortedTopics)
                 Console.WriteLine($"{t.Topic}: {t.Count}");
             Console.WriteLine("\n-------------------------------------\n");
             
-            Console.WriteLine("Podpunkt B");
+            Console.WriteLine("   Podpunkt B");
             foreach (var genderGroup in sortedTopicsByGender)
             {
                 Console.WriteLine($"\n--- {genderGroup.Gender} ---");
@@ -337,7 +337,7 @@ namespace Lista7
         public static void Zad4()
         {
             // podpunkt a
-            string className = typeof(Student2).FullName!;
+            string className = "Lista7.Student2";
             Type t = Type.GetType(className)!;
 
             object? student1 = Activator.CreateInstance(
@@ -369,15 +369,24 @@ namespace Lista7
             result = method.Invoke(student2, null)!;
 
             Console.WriteLine($"Wywołanie metody {methodName}");
-            Console.WriteLine($"Wynik: {result ?? "null"}");
+            Console.WriteLine($"Wynik: {result}");
         }
         
         static void Main()
         {
-            // Zad1();
-            // Zad2();
-            // Zad3();
-            // Zad3Ver2();
+            Console.WriteLine("\tZADANIE 1");
+            Zad1();
+            Console.WriteLine("____________________________________________________________________\n");
+            Console.WriteLine("\tZADANIE 2");
+            Zad2();
+            Console.WriteLine("____________________________________________________________________\n");
+            Console.WriteLine("\tZADANIE 3");
+            Zad3();
+            Console.WriteLine("____________________________________________________________________\n");
+            Console.WriteLine("\tZADANIE 3 WERSJA 2");
+            Zad3Ver2();
+            Console.WriteLine("____________________________________________________________________\n");
+            Console.WriteLine("\tZADANIE 4");
             Zad4();
         }
     }
