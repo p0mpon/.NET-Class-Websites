@@ -12,3 +12,5 @@ MVC in .NET. Sites from previous list but in ASP.NET.
 C#. Very basic programs and showcases.
 #### List 7
 C#, LINQ. Queries and reflections.
+#### List 8
+C#, MVC Core in ASP.NET. Routing in domain.
