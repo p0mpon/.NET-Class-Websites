@@ -1,0 +1,41 @@
+﻿.too-small {
+    color: #272787;
+    font-style: italic;
+    font-size: 20px;
+}
+
+.too-big {
+    color: #953333;
+    font-style: italic;
+    font-size: 20px;
+}
+
+.correct {
+    color: purple;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.set-info {
+    color: #af6e1c;
+    font-weight: bold;
+}
+
+.draw-info {
+    color: darkgreen;
+    font-weight: bold;
+}
+
+.error-info {
+    color: brown;
+    font-weight: bold;
+}
+
+body {
+    background-color: #efbae1;
+    background-image: none;
+}
+
+h2 {
+    color: #400c35;
+}

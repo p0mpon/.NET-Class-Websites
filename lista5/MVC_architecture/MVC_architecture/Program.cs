@@ -25,5 +25,23 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
+app.MapControllerRoute(
+    name: "solveEquation",
+    pattern: "{controller=Tool}/{action=Solve}/{a?}/{b?}/{c?}"
+);
+
+app.UseStaticFiles();
+
+app.MapControllerRoute(
+    name: "gameSet",
+    pattern: "Game/Set,{n}",
+    defaults: new { controller = "Game", action = "Set" }
+);
+
+app.MapControllerRoute(
+    name: "gameGuess",
+    pattern: "Game/Guess,{guess}",
+    defaults: new { controller = "Game", action = "Guess" }
+);
 
 app.Run();

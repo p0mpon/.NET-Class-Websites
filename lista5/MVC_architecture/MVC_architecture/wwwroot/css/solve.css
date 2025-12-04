@@ -1,0 +1,24 @@
+.two-solutions {
+    color: #4eaf4e;
+    font-weight: bolder;
+    font-size: 30px;
+}
+
+.one-solution {
+    color: #4949d3;
+    font-style: italic;
+    font-size: 24px;
+}
+
+.no-solution {
+    color: #833c3c;
+    font-style: oblique;
+    font-size: 16px;
+}
+
+.identity {
+    color: #832b71;
+    font-weight: bold;
+    font-size: 18px;
+    font-style: italic;
+}
