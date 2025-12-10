@@ -1,0 +1,57 @@
+@model Store.Models.Article
+
+@{
+    Layout = "_Layout"; 
+}
+
+<h2>Create New Article</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm("Create", "Articles", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken() 
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Price, new { @class = "control-label" })
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ExpirationDate, new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.ExpirationDate, new { @class = "form-control", type = "date" })
+                @Html.ValidationMessageFor(model => model.ExpirationDate, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Category, new { @class = "control-label" })
+                @Html.DropDownListFor(model => model.Category, 
+                    Html.GetEnumSelectList<Category>(), 
+                    "Choose category", 
+                    new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Create Article" class="btn btn-primary" />
+            </div>
+        }
+    </div>
+</div>
+
+<div class="mt-3">
+    @Html.ActionLink("Back to list", "List", "Articles")
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
