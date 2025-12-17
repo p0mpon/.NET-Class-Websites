@@ -1,10 +1,14 @@
-﻿namespace Store.Models;
+﻿using System.ComponentModel.DataAnnotations;
 
-public enum Category
+namespace Store.Models;
+
+public class Category
 {
-    Books,
-    Stationary,
-    Decorations,
-    Electronics,
-    Other
+    public int Id { get; set; }
+    
+    [Required]
+    [Display(Name = "Category Name")]
+    public required string Name { get; set; }
+    
+    public ICollection<Article>? Articles { get; set; }
 }

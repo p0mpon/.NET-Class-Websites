@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Store.Models.Article>
+
+@{
+    ViewData["Title"] = "Shop";
+    var categories = ViewBag.Categories as IEnumerable<Category> ?? Enumerable.Empty<Category>();
+    int? currentCategoryId = ViewBag.CurrentCategoryId as int?;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-3">
+        <h4>Categories</h4>
+        <div class="list-group">
+            @{ var isAllActive = currentCategoryId == null; }
+            @Html.ActionLink("All", "Index", "Shop", null, 
+                new { @class = "list-group-item list-group-item-action" + (isAllActive ? " active" : "") })
+
+            @foreach (var category in categories)
+            {
+                var isActive = currentCategoryId.HasValue && currentCategoryId.Value == category.Id;
+                @Html.ActionLink(category.Name, "Index", "Shop", new { categoryId = category.Id }, 
+                    new { @class = "list-group-item list-group-item-action" + (isActive ? " active" : "") })
+            }
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (var article in Model)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        @if (!string.IsNullOrWhiteSpace(article.ImagePath) && article.ImagePath != "default.png")
+                        {
+                            <img src="~/upload/@article.ImagePath" class="card-img-top" alt="@article.Name" style="height: 150px; object-fit: cover;">
+                        }
+                        else
+                        {
+                            <img src="~/images/default.png" class="card-img-top" alt="No Image" style="height: 150px; object-fit: cover;">
+                        }
+
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => article.Name)</h5>
+                            
+                            <p class="card-text small">
+                                <strong>Category:</strong> @Html.DisplayFor(modelItem => article.Category.Name)<br />
+                                <strong>Price:</strong> @Html.DisplayFor(modelItem => article.Price) zł<br />
+                                <strong>Exp. Date:</strong> @article.ExpirationDate.ToString("dd.MM.yyyy")
+                            </p>
+                        </div>
+                        
+                        <div class="card-footer bg-transparent border-top-0">
+                            @Html.ActionLink("Details", "Details", "Articles", new { id = article.Id }, new { @class = "btn btn-sm btn-outline-primary w-100" })
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

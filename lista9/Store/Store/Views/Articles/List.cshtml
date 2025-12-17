@@ -2,10 +2,7 @@
 
 @{
     Layout = "_Layout";
-}
-
-@section ArticleSummary {
-    <p class="text-info">There are currently @Model.Count() articles in the store.</p>
+    ViewData["Title"] = "Articles";
 }
 
 <h2 class="mt-4">List of Articles</h2>
@@ -33,6 +30,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Category)
             </th>
+            <th>Image</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -46,13 +44,23 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
+                @($"{item.Price:F2} zł")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ExpirationDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Category)
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+            <td>
+                @if (!string.IsNullOrWhiteSpace(item.ImagePath) && item.ImagePath != "default.png")
+                {
+                    <img src="~/upload/@item.ImagePath" alt="@item.Name" style="max-height:50px;" />
+                }
+                else
+                {
+                    <img src="~/images/default.png" alt="No image" style="max-height:50px;" />
+                }
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new

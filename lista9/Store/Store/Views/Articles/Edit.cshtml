@@ -9,9 +9,9 @@
 
 <div class="row">
     <div class="col-md-6">
-        @using (Html.BeginForm("Edit", "Articles", FormMethod.Post))
+        @using (Html.BeginForm("Edit", "Articles", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            @Html.AntiForgeryToken() 
+            @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Id)
             
@@ -26,21 +26,34 @@
                 @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
             </div>
-
+            
             <div class="form-group mb-3">
-                @Html.LabelFor(model => model.ExpirationDate, new { @class = "control-label" })
-                @Html.EditorFor(model => model.ExpirationDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ExpirationDate, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.Category, new { @class = "control-label" })
+                @Html.DropDownList("categoryId", (SelectList)ViewData["Categories"]!, "Select Category", new { @class = "form-control" })
+                @Html.ValidationMessage("categoryId", "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group mb-3">
-                @Html.LabelFor(model => model.Category, new { @class = "control-label" })
-                
-                @Html.DropDownListFor(model => model.Category, 
-                    Html.GetEnumSelectList<Category>(), 
-                    new { @class = "form-control" })
+                @Html.LabelFor(model => model.ExpirationDate, new { @class = "control-label" })
+                @Html.EditorFor(model => model.ExpirationDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.ExpirationDate, "", new { @class = "text-danger" })
+            </div>
 
-                @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label>Current Image</label>
+                @if (!string.IsNullOrWhiteSpace(Model.ImagePath) && Model.ImagePath != "default.png")
+                {
+                    <img id="preview" src="~/upload/@Model.ImagePath" alt="Current image" style="max-width:200px; display:block;" />
+                }
+                else
+                {
+                    <img id="preview" src="~/images/default.png" alt="Placeholder" style="max-width:200px; display:block;" />
+                }
+            </div>
+            <div class="form-group mt-3">
+                @Html.LabelFor(model => model.FormFile, new { @class = "control-label" })
+                <input asp-for="FormFile" class="form-control" type="file" accept="image/*" onchange="previewFile(event)" />
+                @Html.ValidationMessageFor(model => model.FormFile, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group mt-4">
@@ -56,4 +69,16 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        var previewFile = function (event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('preview');
+                output.src = reader.result;
+                output.style.display = "block";
+                output.style.maxWidth = "200px";
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        };
+    </script>
 }

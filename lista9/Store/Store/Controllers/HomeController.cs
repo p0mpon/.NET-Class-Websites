@@ -15,9 +15,18 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        return RedirectToAction("Index", "Shop");
+    }
+    
+    public IActionResult Articles()
+    {
         return RedirectToAction("List", "Articles");
     }
 
+    public IActionResult Categories()
+    {
+        return RedirectToAction("List", "Categories");
+    }
 
     public IActionResult Privacy()
     {

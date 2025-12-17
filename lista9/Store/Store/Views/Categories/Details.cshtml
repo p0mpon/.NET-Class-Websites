@@ -1,0 +1,14 @@
+@model Store.Models.Category
+@{
+    ViewData["Title"] = "Category Details";
+}
+
+<h1>Category Details</h1>
+<hr />
+<dl class="row">
+    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Name)</dt>
+    <dd class="col-sm-10">@Model.Name</dd>
+</dl>
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+<a asp-action="List" class="btn btn-secondary">Go Back</a>
+
