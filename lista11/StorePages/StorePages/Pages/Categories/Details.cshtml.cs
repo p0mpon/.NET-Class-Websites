@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using StorePages.Data;
+using StorePages.Models;
+
+namespace StorePages.Pages.Categories
+{
+    public class DetailsModel : PageModel
+    {
+        private readonly StorePages.Data.ShopDbContext _context;
+
+        public DetailsModel(StorePages.Data.ShopDbContext context)
+        {
+            _context = context;
+        }
+
+        public Category Category { get; set; } = default!;
+
+        public async Task<IActionResult> OnGetAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var category = await _context.Categories.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (category is not null)
+            {
+                Category = category;
+
+                return Page();
+            }
+
+            return NotFound();
+        }
+    }
+}

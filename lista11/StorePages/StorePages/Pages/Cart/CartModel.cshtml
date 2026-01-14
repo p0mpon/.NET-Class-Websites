@@ -1,0 +1,49 @@
+﻿@page
+@model StorePages.Pages.Cart.CartModel
+
+<h2>Your cart</h2>
+
+@if (!Model.Cart.Items.Any())
+{
+    <div class="alert alert-info">Your cart is empty. Buy something now.</div>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Article</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Sum</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.Cart.Items)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@($"{item.Price:F2} zł")</td>
+                <td>@item.Quantity</td>
+                <td>@($"{item.TotalValue:F2} zł")</td>
+                <td>
+                    <a asp-page-handler="UpdateQuantity" asp-route-id="@item.ArticleId" asp-route-delta="1" class="btn btn-sm btn-success">+</a>
+                    <a asp-page-handler="UpdateQuantity" asp-route-id="@item.ArticleId" asp-route-delta="-1" class="btn btn-sm btn-warning">-</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="3" class="text-right"><strong>Overall:</strong></td>
+            <td><strong>@($"{Model.Cart.GrandTotal:F2} zł")</strong></td>
+            <td></td>
+        </tr>
+        </tfoot>
+    </table>
+    
+    <div class="text-right mt-3">
+        <a asp-page="/Order/Order" class="btn btn-primary btn-lg">Make order</a>
+    </div>
+}

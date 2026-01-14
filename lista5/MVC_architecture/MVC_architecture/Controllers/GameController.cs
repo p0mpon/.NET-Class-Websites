@@ -1,13 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace MVC_architecture.Controllers;
 
 public class GameController : Controller
 {
-    // zmienne statyczne
-    private static int _rangeN = 10;
-    private static int _randomValue = -1;
-    private static int _attemptsCount; 
+    private int _rangeN
+    {
+        get => HttpContext.Session.GetInt32("_rangeN") ?? 10;
+        set => HttpContext.Session.SetInt32("_rangeN", value);
+    }
+
+    private int _randomValue
+    {
+        get => HttpContext.Session.GetInt32("_randomValue") ?? -1;
+        set => HttpContext.Session.SetInt32("_randomValue", value);
+    }
+
+    private int _attemptsCount
+    {
+        get => HttpContext.Session.GetInt32("_attemptsCount") ?? 0;
+        set => HttpContext.Session.SetInt32("_attemptsCount", value);
+    }
+
     private static Random _rng = new Random();
 
     // /Game/Set/n

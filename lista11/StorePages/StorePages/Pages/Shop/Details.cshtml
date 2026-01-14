@@ -1,0 +1,55 @@
+@page
+@model StorePages.Pages.Shop.DetailsModel
+
+@{
+    ViewData["Title"] = "Article Details";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>@Model.Article.Name</h1>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            @if (!string.IsNullOrWhiteSpace(Model.Article.ImagePath) && Model.Article.ImagePath != "images/default.png")
+            {
+                <img src="~/upload/@Model.Article.ImagePath" class="card-img-top" alt="@Model.Article.Name" style="max-height: 400px; object-fit: cover;">
+            }
+            else
+            {
+                <img src="~/images/default.png" class="card-img-top" alt="No Image" style="max-height: 400px; object-fit: cover;">
+            }
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <dl class="row">
+            <dt class="col-sm-4">
+                <strong>Category:</strong>
+            </dt>
+            <dd class="col-sm-8">
+                @Model.Article.Category!.Name
+            </dd>
+
+            <dt class="col-sm-4">
+                <strong>Price:</strong>
+            </dt>
+            <dd class="col-sm-8">
+                @($"{Model.Article.Price:F2} zł")
+            </dd>
+
+            <dt class="col-sm-4">
+                <strong>Expiration Date:</strong>
+            </dt>
+            <dd class="col-sm-8">
+                @($"{Model.Article.ExpirationDate:dd.MM.yyyy}")
+            </dd>
+        </dl>
+
+        <div class="mt-4">
+            <a asp-page="/Shop/Index" class="btn btn-secondary">Back to Shop</a>
+            <a asp-page="/Shop/Index" asp-page-handler="AddToCart" asp-route-id="@Model.Article.Id" class="btn btn-success">Add to Cart</a>
+        </div>
+    </div>
+</div>
+

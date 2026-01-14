@@ -45,7 +45,7 @@
                             
                             <p class="card-text small">
                                 <strong>Category:</strong> @Html.DisplayFor(modelItem => article.Category.Name)<br />
-                                <strong>Price:</strong> @Html.DisplayFor(modelItem => article.Price) zł<br />
+                                <strong>Price:</strong> @($"{article.Price:F2} zł")<br />
                                 <strong>Exp. Date:</strong> @article.ExpirationDate.ToString("dd.MM.yyyy")
                             </p>
                         </div>

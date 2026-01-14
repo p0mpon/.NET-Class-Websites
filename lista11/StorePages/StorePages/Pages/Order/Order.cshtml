@@ -1,0 +1,70 @@
+﻿@page
+@model StorePages.Pages.Order.OrderModel
+@{
+    ViewData["Title"] = "Summary & Delivery";
+}
+
+<h2>Confirm Your Order</h2>
+
+@if (!Model.Cart.Items.Any())
+{
+    <div class="alert alert-warning">Your cart is empty. Nothing to order!</div>
+}
+else
+{
+    <table class="table table-striped border">
+        <thead>
+            <tr>
+                <th>Article</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Cart.Items)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Price.ToString("F2") zł</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.TotalValue.ToString("F2") zł</td>
+                </tr>
+            }
+        </tbody>
+        <footer class="table-light">
+            <tr>
+                <td colspan="3" class="text-end"><strong>Total to pay:</strong></td>
+                <td><strong>@Model.Cart.GrandTotal.ToString("F2") zł</strong></td>
+            </tr>
+        </footer>
+    </table>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Delivery & Payment</h3>
+            <form method="post">
+                <div class="mb-3">
+                    <label class="form-label">Full Name</label>
+                    <input asp-for="Input.FullName" class="form-control" placeholder="John Doe" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Delivery Address</label>
+                    <textarea asp-for="Input.Address" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Payment Method</label>
+                    <select asp-for="Input.PaymentMethod" class="form-select" required>
+                        <option value="">-- Choose method --</option>
+                        <option value="Card">Credit Card</option>
+                        <option value="BLIK">BLIK / Mobile</option>
+                        <option value="Transfer">Bank Transfer</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success w-100">Confirm and Buy</button>
+            </form>
+        </div>
+    </div>
+}

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Store.Models;
+using Store.Data;
 
 namespace Store.Controllers
 {
@@ -93,7 +94,7 @@ namespace Store.Controllers
             {
                 return NotFound();
             }
-            ViewData["Categories"] = new SelectList(_context.Categories, "Id", "Name", article.Category?.Id);
+            ViewData["Categories"] = new SelectList(_context.Categories, "Id", "Name", article.Category.Id);
             return View(article);
         }
 

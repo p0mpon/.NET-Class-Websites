@@ -1,0 +1,126 @@
+﻿@page
+@model StorePages.Pages.Shop.IndexModel
+@{
+    ViewData["Title"] = "Shop";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-3">
+        <h4>Categories</h4>
+        <div class="list-group">
+            <a asp-page="./Index" asp-route-categoryId="" 
+               class="list-group-item list-group-item-action @(Model.CategoryId == null ? "active" : "")">
+                All
+            </a>
+
+            @foreach (var category in Model.Categories)
+            {
+                <a asp-page="./Index" asp-route-categoryId="@category.Id" 
+                   class="list-group-item list-group-item-action @(Model.CategoryId == category.Id ? "active" : "")">
+                    @category.Name
+                </a>
+            }
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div id="articles-container" class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (var article in Model.Articles)
+            {
+                <div class="col article-item">
+                    <div class="card h-100 shadow-sm">
+                        <img src="@(string.IsNullOrWhiteSpace(article.ImagePath) ? "/images/default.png" : $"/upload/{article.ImagePath}")" 
+                             class="card-img-top" style="height: 150px; object-fit: cover;">
+                        
+                        <div class="card-body">
+                            <h5 class="card-title">@article.Name</h5>
+                            <p class="card-text small">
+                                <strong>Price:</strong> @article.Price.ToString("F2") zł
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent border-top-0 d-flex gap-1">
+                            <a asp-page="./Details" asp-route-id="@article.Id" class="btn btn-sm btn-outline-primary flex-grow-1">Details</a>
+                            <a asp-page-handler="AddToCart" asp-route-id="@article.Id" class="btn btn-sm btn-success flex-grow-1">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        
+        <div class="text-center mt-4">
+            <button type="button" id="load-more-btn" class="btn btn-secondary" onclick="loadMore()">Show more</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        let isFull = false;
+        let isLoading = false;
+
+        $(window).scroll(function() {
+            if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+                if (!isLoading && !isFull) {
+                    loadMore();
+                }
+            }
+        });
+
+        function loadMore() {
+            isLoading = true;
+            let currentCount = $(".article-item").length;
+
+            $.ajax({
+                url: "/api/ArticlesApi",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    let batchSize = 6;
+                    let newArticles = data.slice(currentCount, currentCount + batchSize);
+
+                    if (newArticles.length === 0) {
+                        isFull = true;
+                        $("#load-more-btn").hide();
+                        return;
+                    }
+
+                    newArticles.forEach(article => {
+                        let imgPath = article.imagePath ? `/upload/${article.imagePath}` : "/images/default.png";
+                        
+                        let card = `
+                            <div class="col article-item">
+                                <div class="card h-100 shadow-sm">
+                                    <img src="${imgPath}" class="card-img-top" style="height: 150px; object-fit: cover;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${article.name}</h5>
+                                        <p class="card-text small">
+                                            <strong>Price:</strong> ${article.price.toFixed(2)} zł
+                                        </p>
+                                    </div>
+                                    <div class="card-footer bg-transparent border-top-0 d-flex gap-1">
+                                        <a href="/Shop/Details?id=${article.id}" class="btn btn-sm btn-outline-primary flex-grow-1">Details</a>
+                                        <a href="/Shop/Index?handler=AddToCart&id=${article.id}" class="btn btn-sm btn-success flex-grow-1">Add to Cart</a>
+                                    </div>
+                                </div>
+                            </div>`;
+                        
+                        $("#articles-container").append(card);
+                    });
+
+                    isLoading = false;
+
+                    if (currentCount + newArticles.length >= data.length) {
+                        isFull = true;
+                        $("#load-more-btn").hide();
+                    }
+                },
+                error: function() {
+                    console.error("Error loading articles using AJAX.");
+                    isLoading = false;
+                }
+            });
+        }
+    </script>
+}
